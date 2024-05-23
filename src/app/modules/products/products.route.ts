@@ -4,7 +4,7 @@ import { ProductControllers } from './products.contorller';
 
 const router = express.Router();
 
-// 1. Create a New Product
+// 1. Create a New Product and 6. Search a product
 router.post('/products', ProductControllers.createProduct);
 
 // 2. Retrieve a List of All Products

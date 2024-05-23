@@ -10,10 +10,21 @@ const createProductIntoDB = async (productData: TProduct) => {
   return result;
 };
 
-const getProductsFromDB = async () => {
-  const result = await Products.find();
+const getProductsFromDB = async (searchTerm: string) => {
+  let query = {};
+
+  if (searchTerm) {
+    query = { name: new RegExp(searchTerm as string, 'i') }; // Case-insensitive search
+  }
+
+  const result = await Products.find(query);
   return result;
 };
+
+// const getProductsFromDB = async () => {
+//   const result = await Products.find();
+//   return result;
+// };
 
 const getSingleProductFromDB = async (name: string) => {
   const result = await Products.findOne({ name });
@@ -25,9 +36,19 @@ const deleteProductFromDB = async (name: string) => {
   return result;
 };
 
+const getProductsBySearchTermFromDB = async (searchTerm: string) => {
+  const query = {
+    name: { $regex: searchTerm, $options: 'i' },
+  };
+  const result = await Products.find(query);
+
+  return result;
+};
+
 export const ProductServices = {
   createProductIntoDB,
   getProductsFromDB,
   getSingleProductFromDB,
   deleteProductFromDB,
+  getProductsBySearchTermFromDB,
 };

@@ -29,7 +29,8 @@ const createProduct = async (req: Request, res: Response) => {
 
 const getProducts = async (req: Request, res: Response) => {
   try {
-    const result = await ProductServices.getProductsFromDB();
+    const searchTerm = req.query.searchTerm as string;
+    const result = await ProductServices.getProductsFromDB(searchTerm);
 
     res.status(200).json({
       success: true,
@@ -83,9 +84,37 @@ const deleteProduct = async (req: Request, res: Response) => {
   }
 };
 
+const getProductsBySearchTerm = async (req: Request, res: Response) => {
+  try {
+    const searchTerm = req.query.searchTerm as string;
+
+    if (!searchTerm) {
+      return res.status(400).send('searchTerm query parameter is required');
+    }
+
+    const result =
+      await ProductServices.getProductsBySearchTermFromDB(searchTerm);
+
+    console.log(result);
+
+    res.status(200).json({
+      success: true,
+      message: `Products matching search term '${searchTerm}' fetched successfully!`,
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message || 'Something went wrong',
+      error: err,
+    });
+  }
+};
+
 export const ProductControllers = {
   createProduct,
   getProducts,
   getSingleProduct,
   deleteProduct,
+  getProductsBySearchTerm,
 };
