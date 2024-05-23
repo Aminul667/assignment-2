@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import { OrderServices } from './orders.service';
 import orderValidationSchema from './orders.validation';
 
@@ -14,7 +15,7 @@ const createOrder = async (req: Request, res: Response) => {
     // send response
     res.status(200).json({
       success: true,
-      message: 'Product created successfully!',
+      message: 'Order created successfully!',
       data: result,
     });
   } catch (err: any) {
@@ -24,4 +25,8 @@ const createOrder = async (req: Request, res: Response) => {
       error: err,
     });
   }
+};
+
+export const OrderControllers = {
+  createOrder,
 };
