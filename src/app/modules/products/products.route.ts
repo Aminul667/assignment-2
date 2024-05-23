@@ -10,7 +10,8 @@ router.post('/products', ProductControllers.createProduct);
 // 2. Retrieve a List of All Products
 router.get('/products', ProductControllers.getProducts);
 
-// router.get('/:studentId', StudentControllers.getSingleStudent);
+// Retrieve a Specific Product by ID
+router.get('/products/:productId', ProductControllers.getSingleProduct);
 
 // router.delete('/:studentId', StudentControllers.deleteStudent);
 
