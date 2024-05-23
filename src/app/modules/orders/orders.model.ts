@@ -9,8 +9,8 @@ const orderSchema = new Schema<TOrder, OrderModel>({
 });
 
 // creating custom static method
-orderSchema.statics.isUserExists = async function (name: string) {
-  const existingOrder = await Order.findOne({ name });
+orderSchema.statics.isUserExists = async function (email: string) {
+  const existingOrder = await Order.findOne({ email });
 
   return existingOrder;
 };
