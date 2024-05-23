@@ -10,6 +10,18 @@ const createOrderIntoDB = async (orderData: TOrder) => {
   return result;
 };
 
+const getOrdersFromDB = async (searchEmail: string) => {
+  let query = {};
+
+  if (searchEmail) {
+    query = { email: new RegExp(searchEmail, 'i') };
+  }
+
+  const result = await Order.find(query);
+  return result;
+};
+
 export const OrderServices = {
   createOrderIntoDB,
+  getOrdersFromDB,
 };
