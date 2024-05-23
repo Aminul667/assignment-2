@@ -4,9 +4,10 @@ import { ProductControllers } from './products.contorller';
 
 const router = express.Router();
 
-// it calls controller
+// 1. Create a New Product
 router.post('/products', ProductControllers.createProduct);
 
+// 2. Retrieve a List of All Products
 router.get('/products', ProductControllers.getProducts);
 
 // router.get('/:studentId', StudentControllers.getSingleStudent);
