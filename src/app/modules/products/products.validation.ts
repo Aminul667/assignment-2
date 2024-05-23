@@ -20,6 +20,7 @@ const ProductValidationSchema = z.object({
   tags: z.array(z.string()).nonempty(),
   variants: z.array(VariantValidationSchema).nonempty(),
   inventory: InventoryValidationSchema,
+  isDeleted: z.boolean().optional().default(false),
 });
 
 // Export the Zod schemas

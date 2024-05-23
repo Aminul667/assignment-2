@@ -10,9 +10,10 @@ router.post('/products', ProductControllers.createProduct);
 // 2. Retrieve a List of All Products
 router.get('/products', ProductControllers.getProducts);
 
-// Retrieve a Specific Product by ID
+// 3. Retrieve a Specific Product by ID
 router.get('/products/:productId', ProductControllers.getSingleProduct);
 
-// router.delete('/:studentId', StudentControllers.deleteStudent);
+// 5. Delete a Product
+router.delete('/products/:productId', ProductControllers.deleteProduct);
 
 export const ProductsRoutes = router; // as router is an object itself
