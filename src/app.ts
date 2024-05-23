@@ -1,14 +1,6 @@
-// const express = require("express");
-// const app = express();
-// const port = 3000;
-
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
-
-import express, { Application, Request, Response } from "express";
-import cors from "cors";
-// import { StudentRoutes } from './app/modules/student/student.route';
+import express, { Application, Request, Response } from 'express';
+import cors from 'cors';
+import { ProductsRoutes } from './app/modules/products/products.route';
 
 const app: Application = express();
 
@@ -17,9 +9,9 @@ app.use(express.json());
 app.use(cors());
 
 // application routes
-// app.use('/api/v1/students', StudentRoutes);
+app.use('/api/products', ProductsRoutes);
 
-app.get("/", (req: Request, res: Response) => {
+app.get('/', (req: Request, res: Response) => {
   const a = 10;
 
   res.send(a);
