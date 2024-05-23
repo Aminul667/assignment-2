@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 // application routes
-app.use('/api/products', ProductsRoutes);
+app.use('/api', ProductsRoutes);
 
 app.get('/', (req: Request, res: Response) => {
   const a = 10;

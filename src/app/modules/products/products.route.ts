@@ -1,10 +1,11 @@
 import express from 'express';
+import { ProductControllers } from './products.contorller';
 // import { StudentControllers } from './student.controller';
 
 const router = express.Router();
 
 // it calls controller
-// router.post('/create-student', StudentControllers.createStudent);
+router.post('/products', ProductControllers.createProduct);
 
 // router.get('/', StudentControllers.getAllStudents);
 
