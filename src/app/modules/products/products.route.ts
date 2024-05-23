@@ -7,7 +7,7 @@ const router = express.Router();
 // it calls controller
 router.post('/products', ProductControllers.createProduct);
 
-// router.get('/', StudentControllers.getAllStudents);
+router.get('/products', ProductControllers.getProducts);
 
 // router.get('/:studentId', StudentControllers.getSingleStudent);
 
