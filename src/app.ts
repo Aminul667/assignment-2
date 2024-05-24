@@ -13,6 +13,14 @@ app.use(cors());
 app.use('/api', ProductsRoutes);
 app.use('/api', OrderRoutes);
 
+// 404 Not Found handler
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found',
+  });
+});
+
 app.get('/', (req: Request, res: Response) => {
   const a = 10;
 
