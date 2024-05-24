@@ -67,8 +67,8 @@ const getSingleProduct = async (req: Request, res: Response) => {
 
 const deleteProduct = async (req: Request, res: Response) => {
   try {
-    const productName = req.params.productId;
-    const result = await ProductServices.deleteProductFromDB(productName);
+    const productId = req.params.productId;
+    const result = await ProductServices.deleteProductFromDB(productId);
 
     res.status(200).json({
       success: true,

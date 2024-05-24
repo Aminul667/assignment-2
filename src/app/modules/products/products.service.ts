@@ -14,7 +14,7 @@ const getProductsFromDB = async (searchTerm: string) => {
   let query = {};
 
   if (searchTerm) {
-    query = { name: new RegExp(searchTerm as string, 'i') }; // Case-insensitive search
+    query = { name: new RegExp(searchTerm as string, 'i') };
   }
 
   const result = await Products.find(query);
@@ -26,8 +26,8 @@ const getSingleProductFromDB = async (id: string) => {
   return result;
 };
 
-const deleteProductFromDB = async (name: string) => {
-  const result = await Products.updateOne({ name }, { isDeleted: true });
+const deleteProductFromDB = async (id: string) => {
+  const result = await Products.updateOne({ _id: id }, { isDeleted: true });
   return result;
 };
 

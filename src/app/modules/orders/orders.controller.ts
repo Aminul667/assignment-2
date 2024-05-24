@@ -34,7 +34,7 @@ const getOrders = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: 'Products fetched successfully!',
+      message: 'Orders fetched successfully!',
       data: result,
     });
   } catch (err: any) {
