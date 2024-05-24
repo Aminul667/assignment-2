@@ -2,9 +2,9 @@ import { TProduct } from './products.interface';
 import { Products } from './products.model';
 
 const createProductIntoDB = async (productData: TProduct) => {
-  if (await Products.isUserExists(productData.name)) {
-    throw new Error('User already exists!');
-  }
+  // if (await Products.isUserExists(productData.name)) {
+  //   throw new Error('User already exists!');
+  // }
 
   const result = await Products.create(productData);
   return result;
@@ -21,8 +21,8 @@ const getProductsFromDB = async (searchTerm: string) => {
   return result;
 };
 
-const getSingleProductFromDB = async (name: string) => {
-  const result = await Products.findOne({ name });
+const getSingleProductFromDB = async (id: string) => {
+  const result = await Products.findById(id);
   return result;
 };
 

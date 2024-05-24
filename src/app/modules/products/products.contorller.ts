@@ -48,8 +48,8 @@ const getProducts = async (req: Request, res: Response) => {
 
 const getSingleProduct = async (req: Request, res: Response) => {
   try {
-    const productName = req.params.productId;
-    const result = await ProductServices.getSingleProductFromDB(productName);
+    const productId = req.params.productId;
+    const result = await ProductServices.getSingleProductFromDB(productId);
 
     res.status(200).json({
       success: true,
