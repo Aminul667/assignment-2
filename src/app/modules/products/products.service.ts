@@ -21,11 +21,6 @@ const getProductsFromDB = async (searchTerm: string) => {
   return result;
 };
 
-// const getProductsFromDB = async () => {
-//   const result = await Products.find();
-//   return result;
-// };
-
 const getSingleProductFromDB = async (name: string) => {
   const result = await Products.findOne({ name });
   return result;
@@ -36,19 +31,36 @@ const deleteProductFromDB = async (name: string) => {
   return result;
 };
 
-const getProductsBySearchTermFromDB = async (searchTerm: string) => {
-  const query = {
-    name: { $regex: searchTerm, $options: 'i' },
-  };
-  const result = await Products.find(query);
-
-  return result;
+const updateProductFromDB = async (
+  productId: string,
+  productData: Partial<TProduct>,
+) => {
+  try {
+    const updatedProduct = await Products.findByIdAndUpdate(
+      productId,
+      productData,
+      { new: true },
+    );
+    return updatedProduct;
+  } catch (error: any) {
+    throw new Error('Error updating product: ' + error.message);
+  }
 };
+
+// const getProductsBySearchTermFromDB = async (searchTerm: string) => {
+//   const query = {
+//     name: { $regex: searchTerm, $options: 'i' },
+//   };
+//   const result = await Products.find(query);
+
+//   return result;
+// };
 
 export const ProductServices = {
   createProductIntoDB,
   getProductsFromDB,
   getSingleProductFromDB,
   deleteProductFromDB,
-  getProductsBySearchTermFromDB,
+  updateProductFromDB,
+  // getProductsBySearchTermFromDB,
 };

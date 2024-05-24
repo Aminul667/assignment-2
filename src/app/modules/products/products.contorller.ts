@@ -84,22 +84,18 @@ const deleteProduct = async (req: Request, res: Response) => {
   }
 };
 
-const getProductsBySearchTerm = async (req: Request, res: Response) => {
+export const updateProductController = async (req: Request, res: Response) => {
   try {
-    const searchTerm = req.query.searchTerm as string;
-
-    if (!searchTerm) {
-      return res.status(400).send('searchTerm query parameter is required');
-    }
-
-    const result =
-      await ProductServices.getProductsBySearchTermFromDB(searchTerm);
-
-    console.log(result);
+    const { productId } = req.params;
+    const productData = req.body;
+    const result = await ProductServices.updateProductFromDB(
+      productId,
+      productData,
+    );
 
     res.status(200).json({
       success: true,
-      message: `Products matching search term '${searchTerm}' fetched successfully!`,
+      message: 'Product updated successfully!',
       data: result,
     });
   } catch (err: any) {
@@ -111,10 +107,38 @@ const getProductsBySearchTerm = async (req: Request, res: Response) => {
   }
 };
 
+// const getProductsBySearchTerm = async (req: Request, res: Response) => {
+//   try {
+//     const searchTerm = req.query.searchTerm as string;
+
+//     if (!searchTerm) {
+//       return res.status(400).send('searchTerm query parameter is required');
+//     }
+
+//     const result =
+//       await ProductServices.getProductsBySearchTermFromDB(searchTerm);
+
+//     console.log(result);
+
+//     res.status(200).json({
+//       success: true,
+//       message: `Products matching search term '${searchTerm}' fetched successfully!`,
+//       data: result,
+//     });
+//   } catch (err: any) {
+//     res.status(500).json({
+//       success: false,
+//       message: err.message || 'Something went wrong',
+//       error: err,
+//     });
+//   }
+// };
+
 export const ProductControllers = {
   createProduct,
   getProducts,
   getSingleProduct,
   deleteProduct,
-  getProductsBySearchTerm,
+  // getProductsBySearchTerm,
+  updateProductController,
 };
