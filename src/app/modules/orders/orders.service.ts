@@ -6,9 +6,6 @@ const createOrderIntoDB = async (orderData: TOrder) => {
   const productId = orderData.productId;
   const productItem = await Products.findById(productId);
 
-  console.log({ productItem });
-  console.log({ productId });
-
   if (!productItem) {
     throw new Error('Order not found');
   }
