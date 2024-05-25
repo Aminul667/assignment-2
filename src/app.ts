@@ -1,4 +1,4 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application } from 'express';
 import cors from 'cors';
 import { ProductsRoutes } from './app/modules/products/products.route';
 import { OrderRoutes } from './app/modules/orders/orders.route';
@@ -21,10 +21,10 @@ app.use((req, res) => {
   });
 });
 
-app.get('/', (req: Request, res: Response) => {
-  const a = 10;
+// app.get('/', (req: Request, res: Response) => {
+//   const a = 10;
 
-  res.send(a);
-});
+//   res.send(a);
+// });
 
 export default app;
