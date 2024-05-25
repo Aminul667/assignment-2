@@ -6,7 +6,6 @@ First clone the repository in your device
 
 ```
 git clone https://github.com/Aminul667/assignment-2.git
-
 ```
 
 ## Install Dependencies
