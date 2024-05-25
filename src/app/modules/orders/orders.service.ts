@@ -3,10 +3,6 @@ import { TOrder } from './orders.interface';
 import { Order } from './orders.model';
 
 const createOrderIntoDB = async (orderData: TOrder) => {
-  // if (await Order.isUserExists(orderData.email)) {
-  //   throw new Error('User already exists!');
-  // }
-
   const productId = orderData.productId;
   const productItem = await Products.findById(productId);
 
@@ -16,10 +12,12 @@ const createOrderIntoDB = async (orderData: TOrder) => {
     throw new Error('Order not found');
   }
 
+  // check for available quantity
   if (productItem.inventory.quantity < orderData.quantity) {
     throw new Error('Insufficient quantity available in inventory');
   }
 
+  // reduce quantity after ordering a product
   productItem.inventory.quantity -= orderData.quantity;
   productItem.inventory.inStock = productItem.inventory.quantity > 0;
   await productItem.save();
@@ -29,8 +27,8 @@ const createOrderIntoDB = async (orderData: TOrder) => {
 };
 
 const getOrdersFromDB = async (searchEmail: string) => {
+  // a query for search option
   let query = {};
-
   if (searchEmail) {
     query = { email: new RegExp(searchEmail, 'i') };
   }

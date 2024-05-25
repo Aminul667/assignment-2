@@ -8,8 +8,6 @@ const createProduct = async (req: Request, res: Response) => {
 
     // data validation using zod
     const zodParsedData = ProductValidationSchema.parse(productData);
-
-    //   will call service function to send this data
     const result = await ProductServices.createProductIntoDB(zodParsedData);
 
     // send response
@@ -106,33 +104,6 @@ export const updateProductController = async (req: Request, res: Response) => {
     });
   }
 };
-
-// const getProductsBySearchTerm = async (req: Request, res: Response) => {
-//   try {
-//     const searchTerm = req.query.searchTerm as string;
-
-//     if (!searchTerm) {
-//       return res.status(400).send('searchTerm query parameter is required');
-//     }
-
-//     const result =
-//       await ProductServices.getProductsBySearchTermFromDB(searchTerm);
-
-//     console.log(result);
-
-//     res.status(200).json({
-//       success: true,
-//       message: `Products matching search term '${searchTerm}' fetched successfully!`,
-//       data: result,
-//     });
-//   } catch (err: any) {
-//     res.status(500).json({
-//       success: false,
-//       message: err.message || 'Something went wrong',
-//       error: err,
-//     });
-//   }
-// };
 
 export const ProductControllers = {
   createProduct,

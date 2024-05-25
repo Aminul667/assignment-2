@@ -48,8 +48,6 @@ ProductSchema.pre('findOne', function (next) {
   next();
 });
 
-// [ {$match: { isDeleted : {  $ne: : true}}}   ,{ '$match': { id: '123456' } } ]
-
 ProductSchema.pre('aggregate', function (next) {
   this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
   next();

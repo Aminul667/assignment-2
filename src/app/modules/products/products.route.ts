@@ -1,6 +1,5 @@
 import express from 'express';
 import { ProductControllers } from './products.contorller';
-// import { StudentControllers } from './student.controller';
 
 const router = express.Router();
 
@@ -12,10 +11,10 @@ router.get('/products', ProductControllers.getProducts);
 
 // 3. Retrieve a Specific Product by ID
 router.get('/products/:productId', ProductControllers.getSingleProduct);
+// 4. Update Product Information
+router.put('/products/:productId', ProductControllers.updateProductController);
 
 // 5. Delete a Product
 router.delete('/products/:productId', ProductControllers.deleteProduct);
 
-router.put('/products/:productId', ProductControllers.updateProductController);
-
-export const ProductsRoutes = router; // as router is an object itself
+export const ProductsRoutes = router;

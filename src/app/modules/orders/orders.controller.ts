@@ -8,8 +8,6 @@ const createOrder = async (req: Request, res: Response) => {
 
     // data validation using zod
     const zodParsedData = orderValidationSchema.parse(orderData);
-
-    //   will call service function to send this data
     const result = await OrderServices.createOrderIntoDB(zodParsedData);
 
     // send response
