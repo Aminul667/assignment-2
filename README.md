@@ -27,7 +27,7 @@ DATABASE_URL=mongodb://localhost:27017/your-database-name
 
 ## Start the Application
 
-ou can start the application by running the following command:
+You can start the application by running the following command:
 
 ```
 npm run start:dev
